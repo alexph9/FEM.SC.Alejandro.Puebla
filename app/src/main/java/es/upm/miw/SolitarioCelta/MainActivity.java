@@ -2,6 +2,7 @@ package es.upm.miw.SolitarioCelta;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,7 +11,7 @@ import android.widget.RadioButton;
 
 public class MainActivity extends AppCompatActivity {
 
-	JuegoCelta mJuego;
+	public JuegoCelta mJuego;
     private final String CLAVE_TABLERO = "TABLERO_SOLITARIO_CELTA";
 
 	private final int[][] ids = {
@@ -88,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.preferences:
                 startActivity(new Intent(this, SCeltaPreferences.class));
+                return true;
+            case R.id.menuRestartGame:
+                DialogFragment dialogFragment = new ResetDialogFragment();
+                dialogFragment.show(getSupportFragmentManager(), "Restart");
                 return true;
         }
         return super.onOptionsItemSelected(item);

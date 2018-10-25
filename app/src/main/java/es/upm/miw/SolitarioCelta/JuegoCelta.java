@@ -154,6 +154,7 @@ class JuegoCelta {
 	/**
 	 * Recupera el miJuego a su estado inicial
 	 */
+
 	public void reiniciar() {
         for (int i = 0; i < TAMANIO; i++)
 			System.arraycopy(TABLERO_INICIAL[i], 0, tablero[i], 0, TAMANIO);

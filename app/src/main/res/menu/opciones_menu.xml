@@ -6,6 +6,13 @@
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="100"
         android:title="@string/preferencesText"/>
+
+    <item
+        android:id="@+id/menuRestartGame"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="100"
+        android:title="@string/txtResetGameTitle"/>
+
     <item
         android:id="@+id/menuAbout"
         android:icon="@android:drawable/ic_menu_info_details"
