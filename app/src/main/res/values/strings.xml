@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Solitario Celta</string>
-    <string name="txtReiniciarPartida">Reiniciar</string>
 
     <string name="aboutText">Acerca de</string>
     <string name="aboutMessage">El juego consiste en ir comiendo piezas
@@ -20,10 +19,16 @@
     <string name="txtDialogoFinalAfirmativo">Sí</string>
     <string name="txtDialogoFinalNegativo">No</string>
 
-    <!--Restart Game Dialog -->
+    <!--Restart Game -->
+    <string name="txtReiniciarPartida">Reiniciar</string>
     <string name="txtResetGameTitle">Reiniciar partida</string>
     <string name="txtResetGameMessage">¿Quiere reiniciar la partida?</string>
     <string name="txtResetGameYesOption">Sí</string>
     <string name="txtResetGameNoOption">No</string>
+
+    <!--Save Game Toast -->
+    <string name="toastSaveGame">Partida guardada</string>
+    <string name="txtSaveGame">Guardar partida</string>
+
 
 </resources>

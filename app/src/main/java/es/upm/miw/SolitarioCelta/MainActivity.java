@@ -1,5 +1,6 @@
 package es.upm.miw.SolitarioCelta;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -8,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -93,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuRestartGame:
                 DialogFragment dialogFragment = new ResetDialogFragment();
                 dialogFragment.show(getSupportFragmentManager(), "Restart");
+                return true;
+            case R.id.menuSaveGame:
+                FileController file = new FileController(FileController.FILE_GAME);
+                file.writeFile(this, this.mJuego.serializaTablero(), Context.MODE_PRIVATE);
+                Toast.makeText(this, getString(R.string.toastSaveGame), Toast.LENGTH_SHORT)
+                        .show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
