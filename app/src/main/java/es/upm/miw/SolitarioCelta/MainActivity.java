@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import java.io.File;
-
 public class MainActivity extends AppCompatActivity {
 
 	public JuegoCelta mJuego;
@@ -95,14 +93,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SCeltaPreferences.class));
                 return true;
             case R.id.menuRestartGame:
-                DialogFragment dialogFragment = new ResetDialogFragment();
-                dialogFragment.show(getSupportFragmentManager(), "Restart");
+                DialogFragment restart = new RestartGameDialogFragment();
+                restart.show(getSupportFragmentManager(), "Restart");
                 return true;
             case R.id.menuSaveGame:
-                FileController file = new FileController(FileController.FILE_GAME);
-                file.writeFile(this, this.mJuego.serializaTablero(), Context.MODE_PRIVATE);
-                Toast.makeText(this, getString(R.string.toastSaveGame), Toast.LENGTH_SHORT)
-                        .show();
+                this.mJuego.saveGame(this);
+                return true;
+            case R.id.menuLoadGame:
+                DialogFragment load = new LoadGameDialogFragment();
+                load.show(getSupportFragmentManager(), "Load");
                 return true;
         }
         return super.onOptionsItemSelected(item);

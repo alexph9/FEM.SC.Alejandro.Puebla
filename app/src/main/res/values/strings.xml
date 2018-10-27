@@ -26,9 +26,19 @@
     <string name="txtResetGameYesOption">Sí</string>
     <string name="txtResetGameNoOption">No</string>
 
-    <!--Save Game Toast -->
+    <!--Save Game -->
     <string name="toastSaveGame">Partida guardada</string>
     <string name="txtSaveGame">Guardar partida</string>
+
+    <!--Load Game -->
+    <string name="txtLoadGame">Cargar partida</string>
+    <string name="toastGameLoaded">Partida recuperada</string>
+    <string name="toastGameNotLoaded">No hay partidas guardadas</string>
+    <string name="txtLoadGameTitle">Cargar ultima partida</string>
+    <string name="txtLoadGameMessage">¿Quiere cargar la partida guardada?</string>
+    <string name="txtLoadGameYesOption">Sí</string>
+    <string name="txtLoadGameNoOption">No</string>
+
 
 
 </resources>

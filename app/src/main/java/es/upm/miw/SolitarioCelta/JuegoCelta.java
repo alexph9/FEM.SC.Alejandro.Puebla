@@ -1,5 +1,10 @@
 package es.upm.miw.SolitarioCelta;
 
+import android.content.Context;
+import android.widget.Toast;
+
+import java.io.IOException;
+
 class JuegoCelta {
 	static final int TAMANIO = 7;
     private static final int NUM_MOVIMIENTOS = 4;
@@ -161,5 +166,26 @@ class JuegoCelta {
         tablero[TAMANIO / 2][TAMANIO / 2] = 0;   // posición central
 
         estadoJuego = Estado.ESTADO_SELECCION_FICHA;
+	}
+
+	public void saveGame(MainActivity main) {
+		FileController file = new FileController(FileController.FILE_GAME);
+		file.writeFile(main, main.mJuego.serializaTablero(), Context.MODE_PRIVATE);
+		Toast.makeText(main, main.getString(R.string.toastSaveGame),
+				Toast.LENGTH_SHORT).show();
+	}
+
+	public void loadGame(MainActivity main) {
+		FileController file = new FileController(FileController.FILE_GAME);
+		try {
+			String data = file.readFile(main);
+			main.mJuego.deserializaTablero(data);
+			main.mostrarTablero();
+			Toast.makeText(main, main.getString(R.string.toastGameLoaded),
+					Toast.LENGTH_SHORT).show();
+		} catch (IOException e) {
+			Toast.makeText(main, main.getString(R.string.toastGameNotLoaded),
+					Toast.LENGTH_SHORT).show();
+		}
 	}
 }
