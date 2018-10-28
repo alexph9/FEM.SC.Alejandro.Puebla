@@ -14,7 +14,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 	public JuegoCelta mJuego;
+	RepositorioScores db;
     private final String CLAVE_TABLERO = "TABLERO_SOLITARIO_CELTA";
+    private int score = 0;
 
 	private final int[][] ids = {
 		{       0,        0, R.id.p02, R.id.p03, R.id.p04,        0,        0},
@@ -30,8 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mJuego = new JuegoCelta();
+        db = new RepositorioScores(getApplicationContext());
+        long numElementos = db.count();
+        mJuego = new JuegoCelta(db);
         mostrarTablero();
+
+
     }
 
     /**
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         mostrarTablero();
         if (mJuego.juegoTerminado()) {
-            new AlertDialogFragment().show(getFragmentManager(), "ALERT DIALOG");
+            new SaveScoreDialogFragment().show(getFragmentManager(), "SAVE SCORE DIALOG");
         }
     }
 
@@ -106,4 +112,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

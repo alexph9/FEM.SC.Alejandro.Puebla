@@ -8,7 +8,6 @@
     (en horizontal o en vertical) hasta conseguir que sólo quede una pieza
     en el centro. En cada movimiento, la pieza puede saltar solo una pieza.</string>
     <string name="firstCategoryPrefTitle">Datos personales</string>
-    <string name="editTextPrefTitle">Nombre del jugador</string>
     <string name="editTextPrefSummary">Pulse para teclear el nombre del jugador</string>
     <string name="secondCategoryPrefTitle">Ajustes del juego</string>
     <string name="preferencesText">Ajustes</string>
@@ -30,7 +29,7 @@
     <string name="toastSaveGame">Partida guardada</string>
     <string name="txtSaveGame">Guardar partida</string>
 
-    <!--Load Game -->
+
     <string name="txtLoadGame">Cargar partida</string>
     <string name="toastGameLoaded">Partida recuperada</string>
     <string name="toastGameNotLoaded">No hay partidas guardadas</string>
@@ -38,6 +37,15 @@
     <string name="txtLoadGameMessage">¿Quiere cargar la partida guardada?</string>
     <string name="txtLoadGameYesOption">Sí</string>
     <string name="txtLoadGameNoOption">No</string>
+
+    <!--Save Score -->
+    <string name="editTextPrefTitle">Nombre del jugador</string>
+    <string name="txtSaveScoreTitle">Guardar puntuación</string>
+    <string name="txtSaveScoreSaveOption">Guardar</string>
+    <string name="txtSaveScoreCancelOption">Cancelar</string>
+    <string name="toastSavedScore">Puntuación guardada</string>
+
+
 
 
 

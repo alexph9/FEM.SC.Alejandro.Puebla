@@ -4,11 +4,16 @@ import android.content.Context;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 class JuegoCelta {
 	static final int TAMANIO = 7;
     private static final int NUM_MOVIMIENTOS = 4;
 	private int[][] tablero;
+	private RepositorioScores db;
     private static final int[][] TABLERO_INICIAL = { // Posiciones válidas del tablero
             {0, 0, 1, 1, 1, 0, 0},
             {0, 0, 1, 1, 1, 0, 0},
@@ -33,11 +38,14 @@ class JuegoCelta {
 
 	private Estado estadoJuego;
 
+	private int score = 0;
+
     /**
      * Constructor
      * Inicializa el tablero y el estado del miJuego
      */
-    public JuegoCelta() {
+    public JuegoCelta(RepositorioScores db) {
+    	this.db = db;
 		tablero = new int[TAMANIO][TAMANIO];
         for (int i = 0; i < TAMANIO; i++)
         	System.arraycopy(TABLERO_INICIAL[i], 0, tablero[i], 0, TAMANIO);
@@ -156,6 +164,21 @@ class JuegoCelta {
 				tablero[i][j] = str.charAt(cont++) - '0';
 	}
 
+	private int numberOfPieces() {
+		int numTokens = 0;
+
+		for (int i = 0; i < TAMANIO; i++)
+			for (int j = 0; j < TAMANIO; j++)
+				if (this.tablero[i][j] == 1)
+					numTokens++;
+
+		return numTokens;
+	}
+
+	private String serializeScore(String playerName) {
+		return playerName + ";" + this.numberOfPieces() + ";" + System.currentTimeMillis();
+	}
+
 	/**
 	 * Recupera el miJuego a su estado inicial
 	 */
@@ -187,5 +210,30 @@ class JuegoCelta {
 			Toast.makeText(main, main.getString(R.string.toastGameNotLoaded),
 					Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	public int getScore(){
+		int score = 0;
+
+		for (int i = 0; i < JuegoCelta.TAMANIO; i++){
+			for (int j = 0; j < JuegoCelta.TAMANIO; j++){
+				score +=  this.obtenerFicha(i,j);
+			}
+		}
+		return score;
+	}
+
+	public String getCurrentDate(){
+		Date date = new Date();
+		DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
+		DateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+		return (formatoHora.format(date)+" "+formatoFecha.format(date));
+	}
+
+	public void saveScore(MainActivity main, String playerName) {
+		this.score = getScore();
+		db.add(playerName, score, this.getCurrentDate());
+		Toast.makeText(main, main.getString(R.string.toastSavedScore),
+				Toast.LENGTH_SHORT).show();
 	}
 }

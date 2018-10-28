@@ -25,11 +25,11 @@ public class FileController {
         this.name = name;
     }
 
-    public void writeFile(Context context, String fileData, int openMode) {
+    public void writeFile(Context context, String data, int openMode) {
         try {
             FileOutputStream fileOutputStream = context.openFileOutput(this.getName(),
                     openMode);
-            fileOutputStream.write(fileData.getBytes());
+            fileOutputStream.write((data + "\r\n" ).getBytes());
             fileOutputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
