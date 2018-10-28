@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -16,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
 	public JuegoCelta mJuego;
 	RepositorioScores db;
     private final String CLAVE_TABLERO = "TABLERO_SOLITARIO_CELTA";
-    private int score = 0;
 
 	private final int[][] ids = {
 		{       0,        0, R.id.p02, R.id.p03, R.id.p04,        0,        0},
@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = new RepositorioScores(getApplicationContext());
-        long numElementos = db.count();
         mJuego = new JuegoCelta(db);
         mostrarTablero();
 
@@ -108,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuLoadGame:
                 DialogFragment load = new LoadGameDialogFragment();
                 load.show(getSupportFragmentManager(), "Load");
+                return true;
+            case R.id.menuScoreRanking:
+                this.mJuego.showRankingList(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);

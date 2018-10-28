@@ -20,6 +20,12 @@
         android:title="@string/txtSaveGame"/>
 
     <item
+        android:id="@+id/menuScoreRanking"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="100"
+        android:title="@string/txtScoreRanking"/>
+
+    <item
         android:id="@+id/menuLoadGame"
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="100"

@@ -45,6 +45,12 @@
     <string name="txtSaveScoreCancelOption">Cancelar</string>
     <string name="toastSavedScore">Puntuación guardada</string>
 
+    <!--Save Score -->
+    <string name="txtScoreRanking">Ranking puntuaciones</string>
+    <string name="txtScoreRankingPlayerName">Jugador</string>
+    <string name="txtScoreRankingScore">Puntuación</string>
+    <string name="txtScoreRankingDate">Fecha</string>
+    <string name="toastNoScoreRankingDB">Aun no hay partidas guardadas</string>
 
 
 

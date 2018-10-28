@@ -1,11 +1,14 @@
 package es.upm.miw.SolitarioCelta;
 
 import android.content.Context;
+import android.content.Intent;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -14,6 +17,7 @@ class JuegoCelta {
     private static final int NUM_MOVIMIENTOS = 4;
 	private int[][] tablero;
 	private RepositorioScores db;
+	private ArrayList<Score> scores;
     private static final int[][] TABLERO_INICIAL = { // Posiciones válidas del tablero
             {0, 0, 1, 1, 1, 0, 0},
             {0, 0, 1, 1, 1, 0, 0},
@@ -235,5 +239,17 @@ class JuegoCelta {
 		db.add(playerName, score, this.getCurrentDate());
 		Toast.makeText(main, main.getString(R.string.toastSavedScore),
 				Toast.LENGTH_SHORT).show();
+	}
+
+
+	public void showRankingList(MainActivity main){
+
+		Intent intent = new Intent(main.getApplicationContext(), ScoreRankingActivity.class);
+		this.scores = db.getAll();
+
+		if (!this.scores.isEmpty()) {
+			intent.putParcelableArrayListExtra("score", scores);
+			main.startActivity(intent);
+		}else Toast.makeText(main, main.getString(R.string.toastNoScoreRankingDB), Toast.LENGTH_LONG).show();
 	}
 }

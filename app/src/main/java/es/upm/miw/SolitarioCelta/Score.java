@@ -80,4 +80,14 @@ public class Score implements Parcelable {
             return new Score[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "id=" + id +
+                ", playerName='" + playerName + '\'' +
+                ", tokens=" + tokens +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

@@ -3,9 +3,13 @@ package es.upm.miw.SolitarioCelta;
 import android.content.ContentValues;
 import android.content.Context;
 
+import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+
 import es.upm.miw.SolitarioCelta.ScoreContract.tablaScore;
 
 public class RepositorioScores extends SQLiteOpenHelper {
@@ -48,5 +52,32 @@ public class RepositorioScores extends SQLiteOpenHelper {
         valores.put(tablaScore.COL_DATE, date);
 
         return db.insert(tablaScore.TABLE_NAME, null, valores);
+    }
+
+    public ArrayList<Score> getAll(){
+        String consultaSQL = "SELECT * FROM " + tablaScore.TABLE_NAME;
+        ArrayList<Score> listaScores = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(consultaSQL, null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Score score = new Score(
+                        cursor.getInt(cursor.getColumnIndex(tablaScore.COL_ID)),
+                        cursor.getString(cursor.getColumnIndex(tablaScore.COL_PLAYER_NAME)),
+                        cursor.getInt(cursor.getColumnIndex(tablaScore.COL_TOKENS)),
+                        cursor.getString(cursor.getColumnIndex(tablaScore.COL_DATE))
+                );
+
+                listaScores.add(score);
+                cursor.moveToNext();
+            }
+        }
+
+        cursor.close();
+        db.close();
+
+        return listaScores;
     }
 }
