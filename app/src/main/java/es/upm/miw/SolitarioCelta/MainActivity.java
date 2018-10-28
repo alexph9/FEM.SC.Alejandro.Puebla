@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 	public JuegoCelta mJuego;
 	RepositorioScores db;
     private final String CLAVE_TABLERO = "TABLERO_SOLITARIO_CELTA";
+    TextView tvTokens;
 
 	private final int[][] ids = {
 		{       0,        0, R.id.p02, R.id.p03, R.id.p04,        0,        0},
@@ -31,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         db = new RepositorioScores(getApplicationContext());
         mJuego = new JuegoCelta(db);
+        this.tvTokens = findViewById(R.id.numTokens);
         mostrarTablero();
 
 
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void mostrarTablero() {
         RadioButton button;
-
+        this.tvTokens.setText(String.valueOf(mJuego.getScore()));
         for (int i = 0; i < JuegoCelta.TAMANIO; i++)
             for (int j = 0; j < JuegoCelta.TAMANIO; j++)
                 if (ids[i][j] != 0) {

@@ -52,6 +52,9 @@
     <string name="txtScoreRankingDate">Fecha</string>
     <string name="toastNoScoreRankingDB">Aun no hay partidas guardadas</string>
 
+    <!--Number of Tokens -->
+    <string name="txtTokens">Tokens restantes</string>
+
 
 
 
